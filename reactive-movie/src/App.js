@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import './App.css'
-import logo from './logo.svg';
 import Films from './Films'
 import Details from './Details'
 import TMDB from './TMDB.js'

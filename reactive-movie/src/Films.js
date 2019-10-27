@@ -1,15 +1,35 @@
-import React from 'react'
+import React, {Component} from 'react'
 import FilmRow from './FilmRow'
 
 
-const Films = (props) => {
-	let allFilms = props.films.map(e => <FilmRow title={e.title} poster_path={e.poster_path} releaseDate={e.release_date} key={e.id} />)
-	return (
-		<div className="film-list">
-          <h1 className="section-title">FILMS</h1>
-          {allFilms}
-        </div>
-	)
-}
+export default class Films extends Component {
+	state ={
+		filter: 'all'
+	}
+	handleFilterClick = (filter) => {
+		this.setState({
+			filter: filter
+		})
+		console.log(this)
+	} 
+	render() {
+		let allFilms = this.props.films.map(e => <FilmRow title={e.title} poster_path={e.poster_path} releaseDate={e.release_date} key={e.id} />)
+		return (
+			<div className="film-list">
+			    <h1 className="section-title">FILMS</h1>
+			    <div className="film-list-filters">
+			        <div onClick={() => this.handleFilterClick('all')}  className={`film-list-filter ${this.state.filter === 'all'? 'is-active': ''}`}>
+			            ALL
+			            <span className="section-count">{this.props.films.length}</span>
+			        </div>
+			        <div onClick={() => this.handleFilterClick('faves')} className={`film-list-filter ${this.state.filter === 'faves'? 'is-active': ''}`}>
+			            FAVES
+			            <span className="section-count">0</span>
+			        </div>
+			    </div>
 
-export default Films
+			    {allFilms}
+			</div>
+		)
+	}
+}
