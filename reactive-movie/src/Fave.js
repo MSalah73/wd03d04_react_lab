@@ -1,20 +1,12 @@
 import React, {Component} from 'react'
 
 export default class Fave extends Component {
-	constructor(props){
-		super(props)
-		this.state={
-			isFave: false
-		}
-	}
 	handleClick = (e)=>{
 			e.stopPropagation()
-			this.setState({
-				isFave: !this.state.isFave
-			})
+			this.props.onFaveToggle()
 		}
 	render() {
-		let isFave = this.state.isFave ? 'remove_from_queue' : 'add_to_queue';
+		let isFave = this.props.isFave ? 'remove_from_queue' : 'add_to_queue';
 
 		return (
 			<div onClick={(e) => this.handleClick(e)} className="film-row-fave add_to_queue">
