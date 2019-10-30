@@ -13,7 +13,7 @@ export default class Films extends Component {
 		console.log(this)
 	} 
 	render() {
-		let allFilms = (this.state.filter === 'faves'?this.props.faves: this.props.films).map((e,i) => <FilmRow title={e.title} poster_path={e.poster_path} releaseDate={e.release_date} key={e.id} onFaveToggle={() => this.props.onFaveToggle(e)} isFave={this.props.faves.includes(e)}/>)
+		let allFilms = (this.state.filter === 'faves'?this.props.faves: this.props.films).map((e,i) => <FilmRow title={e.title} poster_path={e.poster_path} releaseDate={e.release_date} key={e.id} onFaveToggle={() => this.props.onFaveToggle(e)} isFave={this.props.faves.includes(e)} handleDetailsClick={() => this.props.handleDetailsClick(e)}/>)
 		return (
 			<div className="film-list">
 			    <h1 className="section-title">FILMS</h1>
